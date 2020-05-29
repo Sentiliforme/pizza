@@ -6,7 +6,7 @@ console.info(`DEMO: ${IS_DEV}`) // We can't use logger here!
 dotenv.config()
 let path: string
 if (IS_DEV) {
-  path = `${__dirname}/.env.development`
+  path = `${__dirname}/../.env.development`
 }
 dotenv.config({ path })
 
