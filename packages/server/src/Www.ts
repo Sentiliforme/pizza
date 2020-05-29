@@ -29,13 +29,7 @@ function onError(error) {
 }
 
 function onListening() {
-  logger.debug('Listening BOOKING SERVER on ' + port)
-  // if (!ENV.IS_DEMO) {
-  //   sendMail(
-  //     'tech@kombo.co',z
-  //     'BookingServer has just restarted on ' + ENV.SERVER_URI + ':' + bind,
-  //   )
-  // }
+  logger.debug('Listening SERVER on ' + port)
 }
 
 App.createApp().then(app => {

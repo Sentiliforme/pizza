@@ -64,8 +64,8 @@
   }
   /*&-light {
     background: $white-total;
-    color: $blue-kombo;
-    border: 1px solid $blue-kombo;
+    color: $blue;
+    border: 1px solid $blue;
     font-weight: 100;
     &.disabled {
       color: $grey-medium;
@@ -102,7 +102,7 @@
   }*/
 }
 
-/* SPINNER booking sent */
+/* SPINNER */
 .spinner {
   height: 100%;
   position: absolute;
