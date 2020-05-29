@@ -1,7 +1,5 @@
-# Awesome Project Build with TypeORM
+# Pizza Backend
 
-Steps to run this project:
-
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+1. Instalar dependencias `yarn install`
+1. Copiar `.env.development.example` como `.env.development` y configurar variables de entorno (BD)
+2. Ejecutar servidor de desarrollo con `yarn dev`

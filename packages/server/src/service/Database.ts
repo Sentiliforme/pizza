@@ -11,7 +11,7 @@ export async function init(): Promise<Connection> {
     connection = await createConnection({
       type: 'mysql',
       host: ENV.MYSQL_HOST,
-      port: 3306,
+      port: ENV.MYSQL_PORT,
       database: ENV.MYSQL_DB,
       username: ENV.MYSQL_USER,
       password: ENV.MYSQL_ROOT_PASSWORD,

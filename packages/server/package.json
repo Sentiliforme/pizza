@@ -4,8 +4,8 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "start": "ts-node src/index.ts",
-      "dev": "ts-node-dev src/index.ts",
+      "start": "ts-node src/Www.ts",
+      "dev": "ts-node-dev src/Www.ts",
       "tsc": "tsc",
       "test": "jest"
    },

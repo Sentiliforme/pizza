@@ -3,12 +3,12 @@ import { getCategory, getAllCategories } from '../controller/category'
 
 const router = express.Router()
 
-router.get('/', async (req, res) => {
+router.get('/category', async (req, res) => {
   const categories = await getAllCategories()
   res.send(categories)
 })
 
-router.get('/:categoryId', async (req, res) => {
+router.get('/category/:categoryId', async (req, res) => {
   const categoryId = parseInt(req.params.categoryId)
   const category = await getCategory(categoryId)
   if (category) {

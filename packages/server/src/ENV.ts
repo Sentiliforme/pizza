@@ -16,5 +16,6 @@ export const MYSQL_USER = process.env.MYSQL_USER || 'root'
 export const MYSQL_ROOT_PASSWORD = process.env.MYSQL_ROOT_PASSWORD || ''
 export const MYSQL_HOST = process.env.MYSQL_HOST || 'localhost'
 export const MYSQL_DB = process.env.MYSQL_DB || 'restaurant'
+export const MYSQL_PORT = parseInt(process.env.MYSQL_PORT) || 3306
 export const ENTITIES_PATH = ['src/entity/**/*.ts']
 export const LOG_SQL = false
