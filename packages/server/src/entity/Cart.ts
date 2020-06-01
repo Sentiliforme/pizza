@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm'
-import { Product } from './Product'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { CartProduct } from './CartProduct'
 
 @Entity()
