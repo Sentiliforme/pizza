@@ -19,3 +19,4 @@ export const MYSQL_DB = process.env.MYSQL_DB || 'restaurant'
 export const MYSQL_PORT = parseInt(process.env.MYSQL_PORT) || 3306
 export const ENTITIES_PATH = ['src/entity/**/*.ts']
 export const LOG_SQL = false
+  
