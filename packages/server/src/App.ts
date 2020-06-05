@@ -1,6 +1,6 @@
 import express, { Express } from 'express'
 import * as Database from './service/Database'
-import router from './api'
+import router from './Routes'
 import 'reflect-metadata'
 import { setup } from './Express'
 

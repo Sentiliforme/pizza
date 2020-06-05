@@ -12,6 +12,10 @@ export class Product {
   @Column()
   price: number
 
-  @ManyToOne(type => Category)
+  @ManyToOne(type => Category, { nullable: true })
   category: Category
+
+  constructor(obj: Partial<Product> = {}) {
+    Object.assign(this, obj)
+  }
 }

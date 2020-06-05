@@ -1,9 +1,9 @@
 import express from 'express'
-import categoryRouter from './Category'
+import menuRouter from './api/Menu'
 
 const router = express.Router()
 
 // register routers
-router.use(categoryRouter)
+router.use(menuRouter)
 
 export default router
