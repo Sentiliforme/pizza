@@ -1,7 +1,11 @@
 <template>
-  <div class="home">
-    <h1>WSIMPRE PROBETA NUNCA BETAPRO</h1>
-  </div>
+  <v-app>
+    <v-alert type="success">I'm a success alert.</v-alert>
+    <v-alert type="info">
+      I'm an info alert.
+    </v-alert>
+  </v-app>
+  
 </template>
 
 <script>

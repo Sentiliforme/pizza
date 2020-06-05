@@ -1,57 +1,66 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <div class="sideBar">
-        <ul>
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-          <router-link to="/about">About</router-link>
-          </li>
-        </ul>
-      </div>
-      <div class="content">
-        <router-view />
-      </div>
-    </div>
-  </div>
-</template>
+  <v-app>
+    <v-card >
+      <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" permanent>
+        <v-list-item class="px-2">
+          <v-list-item-avatar>
+            <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          </v-list-item-avatar>
 
+          <v-list-item-title>John Leider</v-list-item-title>
+
+          <v-btn icon @click.stop="mini = !mini">
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-btn>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list dense>
+          <v-list-item v-for="item in items" :key="item.title" link>
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+    </v-card>
+  </v-app>
+</template>
+<script>
+// import sideBar from './components/SideBar'
+export default {
+  data: () => {
+    return {
+      drawer: true,
+      items: [
+        { title: 'Home', icon: 'mdi-home-city' },
+        { title: 'My Account', icon: 'mdi-account' },
+        { title: 'Users', icon: 'mdi-account-group-outline' }
+      ],
+      mini: true
+    }
+  },
+  name: 'App',
+  components: {
+    // sideBar,
+  }
+}
+</script>
 <style lang="scss">
-#app {
+#nav {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
   padding: 30px;
+  display: grid;
+  height: 100%;
+  width: 100%;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-  .sideBar {
-    position: fixed;
-    height: 100%;
-    background: red;
-    width: 25%;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;/* Disable horizontal scroll */
-    z-index: 2;
-    padding-top: 60px;
-    transition: 0.5s;
-  }
-  .content{
-    margin-left: 25%;
-  }
 }
 </style>
