@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Category from '../components/Category.vue'
+import CategoryTable from '../components/Category.vue'
 import Ingredient from '../components/Ingredient.vue'
 import Product from '../components/Product.vue'
+import Category from '../views/Category.vue'
 
 Vue.use(VueRouter)
 
@@ -14,9 +15,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/Category',
-    name: 'Category',
-    component: Category,
+    path: '/CategoryTable',
+    name: 'categoryTable',
+    component: CategoryTable,
   },
   {
     path: '/ingredient',
@@ -38,9 +39,9 @@ const routes = [
   },
   {
     path: '/category',
-    name: 'CategoryList',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Category.vue')
-  }
+    name: 'Category',
+    component: Category,
+  },
 ]
 
 const router = new VueRouter({
