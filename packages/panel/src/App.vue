@@ -1,50 +1,56 @@
 <template>
-  <v-app>
+  <v-app class="nav">
     <v-sheet height="100%">
-      <v-container>
-        <router-view />
-      </v-container>
+      <v-navigation-drawer v-model="drawer" app permanent>
 
-      <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" absolute>
-        <!-- sidebar dexcripción -->
+        <!-- sidebar TITLE-->
         <v-list-item class="px-2">
           <v-icon>menu</v-icon>
-          <v-list-item-title>Secciones</v-list-item-title>
-          <v-btn icon @click.stop="mini = !mini">
-            <v-icon>mdi-chevron-left</v-icon>
-          </v-btn>
+          <v-list-item-title style="margin-left: 5%">Secciones</v-list-item-title>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list dense>
-          <!-- lista de items -->
+
+        <!-- LIST -->
+        <v-list>
+
+          <!-- ITEMs LIST -->
           <v-list-item v-for="item in items" :key="item.title" router :to="item.route" link>
-            <!-- lista de iconos -->
+
+            <!-- ICON LIST -->
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
-            <!-- lista de contenidos -->
+
+            <!-- CATEGORIE LIST -->
             <v-list-content>
               <v-list-item-title>{{item.title}}</v-list-item-title>
             </v-list-content>
           </v-list-item>
         </v-list>
-        <!-- lista de iconos -->
+
       </v-navigation-drawer>
+
+      <!-- CONTENT -->
+      <v-container style="margin-right: 5%">
+        <router-view />
+      </v-container>
     </v-sheet>
   </v-app>
 </template>
+
+
 <script>
-// import sideBar from './components/SideBar'
+// *                   SCRIPT
+
 export default {
   data: () => {
     return {
       drawer: true,
       items: [
-        { title: 'Categoria', icon: 'library_books', route: '/categorias' },
-        { title: 'Productos', icon: 'local_pizza', route: '/productos' },
-        { title: 'Ingredientes', icon: 'shopping_basket', route: '/ingredientes' }
-      ],
-      mini: true
+        { title: 'Categoria', icon: 'library_books', route: '/category' },
+        { title: 'Productos', icon: 'local_pizza', route: '/product' },
+        { title: 'Ingredientes', icon: 'shopping_basket', route: '/ingredient' },
+      ]
     }
   },
   name: 'App',
@@ -53,7 +59,11 @@ export default {
   }
 }
 </script>
+
+
 <style lang="scss">
+// *                     SCSS
+
 #nav {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -63,5 +73,6 @@ export default {
   display: grid;
   height: 100%;
   width: 100%;
+  grid-template-columns: 1fr 1fr;
 }
 </style>

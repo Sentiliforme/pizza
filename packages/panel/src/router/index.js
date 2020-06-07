@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Categorias from '../components/Categorias.vue'
-import Ingredientes from '../components/Ingredientes.vue'
-import Productos from '../components/Productos.vue'
+import Category from '../components/Category.vue'
+import Ingredient from '../components/Ingredient.vue'
+import Product from '../components/Product.vue'
 
 Vue.use(VueRouter)
 
@@ -14,19 +14,19 @@ const routes = [
     component: Home,
   },
   {
-    path: '/categorias',
-    name: 'categorias',
-    component: Categorias,
+    path: '/Category',
+    name: 'Category',
+    component: Category,
   },
   {
-    path: '/ingredientes',
-    name: 'ingredientes',
-    component: Ingredientes,
+    path: '/ingredient',
+    name: 'ingredient',
+    component: Ingredient,
   },
   {
-    path: '/productos',
-    name: 'productos',
-    component: Productos,
+    path: '/product',
+    name: 'product',
+    component: Product,
   },
   {
     path: '/about',
