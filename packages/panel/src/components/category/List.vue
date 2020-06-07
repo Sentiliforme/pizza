@@ -1,12 +1,12 @@
 <template>
   <div v-if="isLoading">Cargando...</div>
   <div v-else>
-    <ul>
-      <li v-for="category in categories" :key="category.id">
-        {{category.name}}
-      </li>
-    </ul>
+
+  <v-app>
+    <v-data-table :headers="headers" :items="categories" ></v-data-table>
+  </v-app>
   </div>
+  
 </template>
 
 <script>
@@ -16,6 +16,15 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
+            headers: [
+        {
+          text: 'Productos',
+          align: 'start',
+          sortable: false,
+          value: 'id',
+        },
+        { text: 'Nombre', value: 'name' },
+      ],
       categories: [],
       isLoading: true
     }
