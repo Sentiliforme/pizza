@@ -1,4 +1,5 @@
 <template>
+        <!-- sidebar TITLE-->
   <v-app class="nav">
     <v-sheet height="100%">
       <v-navigation-drawer v-model="drawer" app permanent>
