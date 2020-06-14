@@ -15,9 +15,15 @@ body {
   height: 50px;
   font-family: $bold-font;
   font-size: 25px;
-  .total-price {
-    color: $white;
+  .left {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
     margin-left: 10px;
+    .total-price {
+      margin-left: 10px;
+      color: $white;
+    }
   }
   .continue-button {
     margin-right: 10px;
