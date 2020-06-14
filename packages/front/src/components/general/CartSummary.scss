@@ -1,0 +1,25 @@
+@import '../../assets/style/variables';
+
+body {
+  padding-bottom: 50px;
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $orange-main;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  font-family: $bold-font;
+  font-size: 25px;
+  .total-price {
+    color: $white;
+    margin-left: 10px;
+  }
+  .continue-button {
+    margin-right: 10px;
+  }
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CountButton from '../general/CountButton'
 import './ListedProduct.scss'
 
@@ -6,6 +6,13 @@ type Props = {
   product: any
 }
 function ListedProduct({ product }: Props) {
+  const [count, setCount] = useState(0)
+  const add = () => {
+    setCount(count + 1)
+  }
+  const remove = () => {
+    setCount(count - 1)
+  }
   return (
     <div className="listed-product">
       <div className="info">
@@ -19,7 +26,7 @@ function ListedProduct({ product }: Props) {
         <div className="price">${product.price}</div>
         <div className="promo-price">2 x $10.900</div>
         <div className="button-container">
-          <CountButton amount={1} />
+          <CountButton amount={count} onAdd={add} onRemove={remove} />
         </div>
       </div>
       <div></div>

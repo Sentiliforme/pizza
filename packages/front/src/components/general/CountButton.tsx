@@ -3,19 +3,34 @@ import './CountButton.scss'
 
 type Props = {
   amount: number
+  onAdd?: () => any
+  onRemove?: () => any
 }
-function CountButton({ amount }: Props) {
+function CountButton({ amount, onAdd, onRemove }: Props) {
   const isZero = amount === 0
+  const handleComponentClick = () => {
+    if (isZero && onAdd) {
+      onAdd()
+    }
+  }
   const emphasisContent = isZero ? '+' : amount
   const zeroClass = isZero ? 'zero' : ''
   return (
-    <button className={'count-button ' + zeroClass}>
+    <div className={'count-button ' + zeroClass} onClick={handleComponentClick}>
       {isZero && <div className="add-label">Agregar</div>}
 
-      {!isZero && <div className="remove-button">-</div>}
+      {!isZero && (
+        <button className="remove-button" onClick={onRemove}>
+          -
+        </button>
+      )}
       <div className="emphasis">{emphasisContent}</div>
-      {!isZero && <div className="add-button">+</div>}
-    </button>
+      {!isZero && (
+        <button className="add-button" onClick={onAdd}>
+          +
+        </button>
+      )}
+    </div>
   )
 }
 
