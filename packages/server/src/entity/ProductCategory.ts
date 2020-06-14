@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { Product } from './Product'
 
 @Entity()
-export class Category {
+export class ProductCategory {
   @PrimaryGeneratedColumn()
   id: number
 
@@ -12,7 +12,7 @@ export class Category {
   @OneToMany(type => Product, product => product.category)
   products: Product[]
 
-  constructor(obj: Partial<Category> = {}) {
+  constructor(obj: Partial<ProductCategory> = {}) {
     Object.assign(this, obj)
   }
 }

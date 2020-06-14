@@ -1,0 +1,40 @@
+@import '../../assets/style/variables';
+
+.listed-product {
+  background-color: $emphasis-gray;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px;
+  margin-top: 10px;
+  .info {
+    display: flex;
+    flex: 3;
+    .description {
+      margin-top: 10px;
+    }
+    .image {
+      width: 84px;
+      height: 84px;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+  .footer{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .price {
+      font-size: 25px;
+      font-family: $bold-font;
+    }
+    .promo-price {
+      color: $orange-main;
+      font-family: $bold-font;
+      font-size: 17px;
+    }
+    flex: 1;
+  }
+
+}

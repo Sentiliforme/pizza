@@ -1,1 +1,1 @@
-export const SET_PLAYER_ID = 'SET_PLAYER_ID' as const
+export const SET_ALERT = 'SET_ALERT' as const

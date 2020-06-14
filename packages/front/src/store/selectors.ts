@@ -9,3 +9,4 @@ export const getTurnType = createSelector([getCurrentTurn, getPlayerId], (turn, 
   else return false
 })
 */
+export const getAlert = (state: State) => state.alert

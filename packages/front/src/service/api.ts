@@ -6,12 +6,7 @@ const axios = axiosLib.create({
 })
 
 export async function getMenu() {
-  try {
-    const response = await axios.get('/category', { params: { includeProducts: true } })
-    const categories = response.data as any[]
-    return { categories }
-  } catch (e) {
-    console.error(e)
-    return { categories: [] }
-  }
+  const response = await axios.get('/category', { params: { includeProducts: true } })
+  const categories = response.data as any[]
+  return { categories }
 }

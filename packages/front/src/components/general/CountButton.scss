@@ -1,0 +1,28 @@
+@import '../../assets/style/variables';
+
+.count-button {
+  display: flex;
+  background-color: $light-gray;
+  align-items: center;
+  height: 40px;
+  .add-label {
+    padding: 10px;
+    flex: 1;
+  }
+  .remove-button, .add-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .emphasis {
+    background-color: $orange-main;
+    font-family: $bold-font;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

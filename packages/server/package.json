@@ -32,7 +32,6 @@
       "winston": "^3.2.1"
    },
    "devDependencies": {
-      "@types/node": "^8.0.29",
       "ts-jest": "^26.0.0",
       "ts-node": "3.3.0",
       "typescript": "^3.6.4"

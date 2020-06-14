@@ -1,8 +1,8 @@
-import { SET_PLAYER_ID } from './actionNames'
+import { SET_ALERT } from './actionNames'
 
-export const setPlayerId = (id: string) => ({
-  type: SET_PLAYER_ID,
+export const setAlert = (message: string) => ({
+  type: SET_ALERT,
   payload: {
-    id
+    message
   }
 })

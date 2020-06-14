@@ -1,7 +1,7 @@
 import * as Database from '../src/service/Database'
 import { Cart } from '../src/entity/Cart'
 import { Product } from '../src/entity/Product'
-import { Category } from '../src/entity/Category'
+import { ProductCategory } from '../src/entity/ProductCategory'
 import { getManager } from 'typeorm'
 import { CartProduct } from '../src/entity/CartProduct'
 
@@ -12,7 +12,7 @@ describe('Cart tests', () => {
 
   test('should create a cart with products', async done => {
     const cart = new Cart()
-    let cat = new Category()
+    let cat = new ProductCategory()
     cat.name = 'Especialidades'
     cat = await getManager().save(cat)
     expect(cat.id).toBeTruthy()

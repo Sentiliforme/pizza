@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { getMenu } from '../service/api'
+import * as Api from '../../service/api'
 import ListedCategory from './ListedCategory'
+import { setAlert } from '../../store'
+import { useDispatch } from 'react-redux'
 
-type Props = {}
-function Home({}: Props) {
+function CategoryList() {
   const [categories, setCategories] = useState<any>([])
+  const dispatch = useDispatch()
   async function loadCategories() {
-    const { categories } = await getMenu()
-    setCategories(categories)
+    try {
+      const { categories } = await Api.getMenu()
+      setCategories(categories)
+    } catch (e) {
+      dispatch(setAlert('Error al obtener las categorias'))
+    }
   }
   useEffect(() => {
     loadCategories()
   }, [])
   return (
     <div>
-      <h2>Categories:</h2>
       {categories.map((category: any) => (
         <ListedCategory category={category} key={category.id} />
       ))}
@@ -22,4 +27,4 @@ function Home({}: Props) {
   )
 }
 
-export default Home
+export default CategoryList

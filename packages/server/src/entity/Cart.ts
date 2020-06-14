@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { CartProduct } from './CartProduct'
+import { CustomProduct } from './CustomProduct'
 
 @Entity()
 export class Cart {
@@ -10,5 +11,8 @@ export class Cart {
   name: string
 
   @OneToMany(type => CartProduct, cartProduct => cartProduct.cart)
-  cartProducts: CartProduct[]
+  products: CartProduct[]
+
+  @OneToMany(type => CustomProduct, customProduct => customProduct.cart)
+  customProducts: CustomProduct[]
 }

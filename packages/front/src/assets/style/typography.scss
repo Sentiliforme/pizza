@@ -1,0 +1,27 @@
+@import 'variables';
+
+@font-face {
+  font-family: $regular-font;
+  src: url('../font/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: $bold-font;
+  src: url('../font/Roboto-Bold.ttf');
+}
+
+h3 {
+  font-size: 20px;
+  font-family: $regular-font;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 25px;
+  font-family: $regular-font;
+}
+
+p {
+  font-size: 16px;
+  font-family: $regular-font;
+}

@@ -1,3 +1,11 @@
 @charset 'UTF-8';
 @import 'vendor/normalize';
-//@import 'reset'; // TODO: Custom h2, etc. Find a way to implement Typography comp
+@import 'reset';
+@import 'typography';
+@import 'variables';
+
+
+body {
+  background-color: $background-gray;
+  color: $white;
+}
