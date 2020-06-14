@@ -10,17 +10,21 @@ export const getTurnType = createSelector([getCurrentTurn, getPlayerId], (turn, 
 })
 */
 export const getAlert = (state: State) => state.alert
-export const getCartProducts = (state: State) => state.cart.products
+export const getCartProducts = (state: State) => Object.values(state.cart.products)
 export const getProducts = (state: State) => state.products
 
 export const getCartValue = createSelector([getCartProducts, getProducts], (cartProducts, products) => {
-  return Object.values(cartProducts).reduce((total, cartProduct) => {
+  return cartProducts.reduce((total, cartProduct) => {
     const amount = cartProduct.amount
     const product = products.find((p) => p.id === cartProduct.productId)
     const { price, promoAmount, promoPrice } = product
     const promos = amount > 0 ? Math.floor(amount / promoAmount) : 0
     const normalPriceProducts = amount - promos * promoAmount
-    console.log('promoProducts', promos)
     return total + (normalPriceProducts * price + promos * promoPrice)
   }, 0)
 })
+
+export const getCartProduct = (id: number) => (state: State) => state.cart.products[id]
+
+export const getProductAmount = (id: number) =>
+  createSelector([getCartProduct(id)], (cartProduct) => cartProduct?.amount || 0)

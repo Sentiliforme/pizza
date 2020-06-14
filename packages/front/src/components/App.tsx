@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import Home from './home/Index'
 import Alert from './general/Alert'
 import { ReactComponent as LogoTexto } from '../assets/svg/logo-texto.svg'
+import Confirm from './confirm/Index'
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/confirm">
+              <Confirm />
             </Route>
           </Switch>
         </Router>

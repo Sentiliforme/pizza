@@ -1,23 +1,21 @@
 import React, { useState } from 'react'
 import CountButton from '../general/CountButton'
 import './ListedProduct.scss'
-import { useDispatch } from 'react-redux'
-import { addProductToCart, removeProductFromCart } from '../../store'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProductToCart, removeProductFromCart, getProductAmount } from '../../store'
 import { formatPrice } from '../../helper/format'
 
 type Props = {
   product: any
 }
 function ListedProduct({ product }: Props) {
-  const [count, setCount] = useState(0)
+  const count = useSelector(getProductAmount(product.id))
   const dispatch = useDispatch()
   const add = () => {
     dispatch(addProductToCart(product.id))
-    setCount(count + 1)
   }
   const remove = () => {
     dispatch(removeProductFromCart(product.id))
-    setCount(count - 1)
   }
   return (
     <div className="listed-product">
