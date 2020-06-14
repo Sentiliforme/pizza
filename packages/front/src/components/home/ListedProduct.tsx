@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import CountButton from '../general/CountButton'
 import './ListedProduct.scss'
+import { useDispatch } from 'react-redux'
+import { addProductToCart, removeProductFromCart } from '../../store'
+import { formatPrice } from '../../helper/format'
 
 type Props = {
   product: any
 }
 function ListedProduct({ product }: Props) {
   const [count, setCount] = useState(0)
+  const dispatch = useDispatch()
   const add = () => {
+    dispatch(addProductToCart(product.id))
     setCount(count + 1)
   }
   const remove = () => {
+    dispatch(removeProductFromCart(product.id))
     setCount(count - 1)
   }
   return (
@@ -23,8 +29,10 @@ function ListedProduct({ product }: Props) {
         </div>
       </div>
       <div className="footer">
-        <div className="price">${product.price}</div>
-        <div className="promo-price">2 x $10.900</div>
+        <div className="price">{formatPrice(product.price)}</div>
+        <div className="promo-price">
+          {product.promoAmount} x {formatPrice(product.promoPrice)}
+        </div>
         <div className="button-container">
           <CountButton amount={count} onAdd={add} onRemove={remove} />
         </div>
