@@ -7,7 +7,13 @@ import {
   addProductToCategory,
   getAllProducts,
   getProduct,
-  getAllIngredients
+  getAllIngredients,
+  addIngredient,
+  getIngredient,
+  editIngredient,
+  deleteIngredient,
+  editProduct,
+  deleteProduct
 } from '../controller/Menu'
 
 const router = express.Router()
@@ -58,8 +64,20 @@ router.get('/product/:productId', async (req, res) => {
 })
 
 router.post('/product', async (req, res) => {
-  const product = await createProduct(req.body)
-  res.send(product)
+  const { product, ingredients } = req.body
+  const response = await createProduct(product, ingredients)
+  res.send(!!response)
+})
+
+router.put('/product/:productId', async (req, res) => {
+  const { product, ingredients } = req.body
+  const response = await editProduct(parseInt(req.params.productId), product, ingredients)
+  res.send(!!response)
+})
+
+router.delete('/product/:productId', async (req, res) => {
+  const result = await deleteProduct(parseInt(req.params.productId))
+  res.send(result)
 })
 
 // Add a product to a category
@@ -73,6 +91,26 @@ router.put('/category/:categoryId/product/:productId', async (req, res) => {
 router.get('/ingredient', async (req, res) => {
   const ingredients = await getAllIngredients()
   res.send(ingredients)
+})
+
+router.post('/ingredient', async (req, res) => {
+  const ingredients = await addIngredient(req.body)
+  res.send(ingredients)
+})
+
+router.get('/ingredient/:ingredientId', async (req, res) => {
+  const ingredient = await getIngredient(parseInt(req.params.ingredientId))
+  res.send(ingredient)
+})
+
+router.put('/ingredient/:ingredientId', async (req, res) => {
+  const result = await editIngredient(parseInt(req.params.ingredientId), req.body)
+  res.send(result)
+})
+
+router.delete('/ingredient/:ingredientId', async (req, res) => {
+  const result = await deleteIngredient(parseInt(req.params.ingredientId))
+  res.send(result)
 })
 
 export default router

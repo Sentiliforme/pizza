@@ -28,9 +28,13 @@ export class Product {
   @ManyToOne(type => ProductCategory, { nullable: true })
   category: ProductCategory
 
+  @Column({ default: true })
+  display: boolean
+
   @OneToMany(
     type => ProductIngredient,
-    productIngredient => productIngredient.product
+    productIngredient => productIngredient.product,
+    { cascade: true, onDelete: 'CASCADE' }
   )
   productIngredients: ProductIngredient[]
 

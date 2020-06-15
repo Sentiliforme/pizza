@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm'
 import { Cart } from './Cart'
 import { CustomProductIngredient } from './CustomProductIngredient'
 
@@ -10,9 +10,12 @@ export class CustomProduct {
   @Column()
   productId: number
 
-  @ManyToOne(type => CustomProductIngredient, cpi => cpi.customProduct)
-  ingredients: CustomProductIngredient[]
-  
+  @OneToMany(
+    type => CustomProductIngredient,
+    cpi => cpi.customProduct
+  )
+  customProductIngredients: CustomProductIngredient[]
+
   @ManyToOne(type => Cart, { cascade: true })
   cart: Cart
 }

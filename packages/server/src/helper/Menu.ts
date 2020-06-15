@@ -10,7 +10,7 @@ export function createRecipeText(ingredients: Ingredient[]) {
   return ingredients.reduce((text, ingredient, i) => {
     const name = i === 0 ? capitalizeFirstLetter(ingredient.name) : ingredient.name.toLowerCase()
     const comma = i !== 0 && i !== n - 1 ? ', ' : ''
-    const and = i === n - 1 ? ' y ' : ''
+    const and = i === n - 1 && i !== 0 ? ' y ' : ''
     return text + and + comma + name
   }, '')
 }

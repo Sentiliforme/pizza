@@ -1,15 +1,17 @@
 <template>
-  <div v-if="isLoading">Cargando...</div>
-  <div v-else>
-    <v-app>
-      <v-data-table :headers="headers" :items="categories">
-        <template v-slot:item.actions="{ item }">
-          <v-btn small color="primary" @click="editCategory(item)" class="mr-3">Editar</v-btn>
-          <v-btn small color="secondary" @click="editCategory(item)">Eliminar</v-btn>
-        </template>
-      </v-data-table>
-    </v-app>
-  </div>
+  <v-app>
+    <v-data-table
+      :headers="headers"
+      :items="categories"
+      :loading="isLoading"
+      loading-text="Cargando..."
+    >
+      <template v-slot:item.actions="{ item }">
+        <v-btn small color="primary" @click="editCategory(item)" class="mr-3">Editar</v-btn>
+        <v-btn small color="secondary" @click="editCategory(item)">Eliminar</v-btn>
+      </template>
+    </v-data-table>
+  </v-app>
 </template>
 
 <script>
@@ -33,9 +35,6 @@ export default {
       isLoading: true
     }
   },
-  props: {
-    msg: String
-  },
   async mounted() {
     const response = await axios.get(BACKEND_URL + '/category')
     this.categories = response.data
@@ -45,7 +44,7 @@ export default {
   methods: {
     editCategory(category) {
       const categoryId = category.id
-      this.$router.push({name: 'CategoryEdit', params: {categoryId}})
+      this.$router.push({ name: 'CategoryEdit', params: { categoryId } })
     }
   }
 }

@@ -1,22 +1,25 @@
 <template>
-  <div v-if="isLoading">Cargando...</div>
-  <div v-else>
-    <v-app>
-      <v-data-table :headers="headers" :items="categories">
-        <template v-slot:item.actions="{ item }">
-          <v-btn small color="primary" @click="editCategory(item)" class="mr-3">Editar</v-btn>
-          <v-btn small color="secondary" @click="editCategory(item)">Eliminar</v-btn>
-        </template>
-      </v-data-table>
-    </v-app>
-  </div>
+  <v-app>
+    <v-data-table
+      :headers="headers"
+      :items="ingredients"
+      :loading="isLoading"
+      loading-text="Cargando..."
+    >
+      <template v-slot:item.actions="{ item }">
+        <v-btn small color="primary" :to="'/ingredient/' + item.id" class="mr-3">Editar</v-btn>
+        <v-btn small color="secondary" :to="'/ingredient/' + item.id + '/delete'">Eliminar</v-btn>
+      </template>
+    </v-data-table>
+    <v-btn color="primary" to="/ingredient/add">Nuevo</v-btn>
+  </v-app>
 </template>
 
 <script>
 import axios from 'axios'
 import { BACKEND_URL } from '@/ENV'
 export default {
-  name: 'HelloWorld',
+  name: 'IngredientList',
   data() {
     return {
       headers: [
@@ -29,42 +32,24 @@ export default {
         { text: 'Nombre', value: 'name' },
         { text: 'Acciones', value: 'actions', sortable: false }
       ],
-      categories: [],
+      ingredients: [],
       isLoading: true
     }
   },
-  props: {
-    msg: String
-  },
   async mounted() {
     const response = await axios.get(BACKEND_URL + '/ingredient')
-    this.categories = response.data
+    this.ingredients = response.data
     this.isLoading = false
     console.log(response.data)
   },
   methods: {
-    editCategory(category) {
-      const categoryId = category.id
-      this.$router.push({name: 'CategoryEdit', params: {categoryId}})
+    editIngredient(ingredient) {
+      const ingredientId = ingredient.id
+      this.$router.push({ name: 'IngredientEdit', params: { ingredientId } })
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>

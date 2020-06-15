@@ -1,21 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, PrimaryColumn } from 'typeorm'
 import { Product } from './Product'
 import { Ingredient } from './Ingredient'
 
 @Entity()
 export class ProductIngredient {
-  @PrimaryGeneratedColumn()
-  id: number
-
-  @Column()
+  @PrimaryColumn()
   productId: number
 
-  @Column()
+  @PrimaryColumn()
   ingredientId: number
 
-  @ManyToOne(type => Product, { cascade: true })
+  @ManyToOne(type => Product, { onDelete: 'CASCADE' })
   product: Product
 
-  @ManyToOne(type => Ingredient, { cascade: true })
+  @ManyToOne(type => Ingredient, { onDelete: 'CASCADE' })
   ingredient: Ingredient
 }

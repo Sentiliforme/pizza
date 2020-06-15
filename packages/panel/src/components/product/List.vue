@@ -8,10 +8,11 @@
     >
       <template v-slot:item.promoPrice="{ item }">{{ item.promoAmount }} x {{ item.promoPrice }}</template>
       <template v-slot:item.actions="{ item }">
-        <v-btn small color="primary" @click="editProduct(item)" class="mr-3">Editar</v-btn>
-        <v-btn small color="secondary" @click="editProduct(item)">Eliminar</v-btn>
+        <v-btn small color="primary" :to="'/product/' + item.id" class="mr-3">Editar</v-btn>
+        <v-btn small color="secondary" :to="'/product/' + item.id + '/delete'">Eliminar</v-btn>
       </template>
     </v-data-table>
+    <v-btn color="primary" to="/product/add">Nuevo</v-btn>
   </v-app>
 </template>
 
@@ -42,7 +43,7 @@ export default {
   methods: {
     editProduct(product) {
       const productId = product.id
-      this.$router.push({name: 'ProductEdit', params: {productId}})
+      this.$router.push({ name: 'ProductEdit', params: { productId } })
     }
   },
   props: {

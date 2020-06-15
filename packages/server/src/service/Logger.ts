@@ -17,7 +17,7 @@ const logger = createLogger({
 })
 
 export function logError(error: any, tag?: string) {
-  console.error(getErrorInfo(error, tag))
+  logger.error(getErrorInfo(error, tag))
 }
 
 /** Extracts the most human-friendly error info */
