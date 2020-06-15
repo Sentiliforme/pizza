@@ -1,12 +1,12 @@
 <template>
-  <v-row align="center" justify="center">
+  <div class="home">
     <CategoryList msg="Vista Categorias" />
-  </v-row>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CategoryList from '../components/category/List.vue'
+import CategoryList from '@/components/category/List.vue'
 
 export default {
   name: 'Home',

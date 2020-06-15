@@ -11,12 +11,12 @@
 import axios from 'axios'
 import { BACKEND_URL } from '@/ENV'
 export default {
-  name: 'HelloWorld',
+  name: 'ProductList',
   data() {
     return {
       headers: [
         {
-          text: 'Id',
+          text: 'Productos',
           align: 'start',
           sortable: false,
           value: 'id'

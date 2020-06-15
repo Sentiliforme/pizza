@@ -13,16 +13,16 @@ export default {
           text: 'Productos',
           align: 'start',
           sortable: false,
-          value: 'name',
+          value: 'name'
         },
         { text: 'Codigo', value: 'id' },
-        { text: 'Nombre', value: 'name' },
+        { text: 'Nombre', value: 'name' }
       ]
     }
   },
   name: 'Categorias',
   props: {
-    msg: String,
+    msg: String
   }
 }
 </script>
