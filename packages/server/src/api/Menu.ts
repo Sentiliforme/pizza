@@ -5,7 +5,9 @@ import {
   createCategory,
   createProduct,
   addProductToCategory,
-  getAllProducts
+  getAllProducts,
+  getProduct,
+  getAllIngredients
 } from '../controller/Menu'
 
 const router = express.Router()
@@ -43,6 +45,18 @@ router.get('/product', async (req, res) => {
   res.send(product)
 })
 
+router.get('/product/:productId', async (req, res) => {
+  const productId = parseInt(req.params.productId)
+  const product = await getProduct(productId)
+  if (product) {
+    res.send(product)
+  } else {
+    res.status(404).send({
+      error: 'No encontrado'
+    })
+  }
+})
+
 router.post('/product', async (req, res) => {
   const product = await createProduct(req.body)
   res.send(product)
@@ -54,6 +68,11 @@ router.put('/category/:categoryId/product/:productId', async (req, res) => {
   const productId = parseInt(req.params.productId)
   const saved = await addProductToCategory(productId, categoryId)
   res.send(saved)
+})
+
+router.get('/ingredient', async (req, res) => {
+  const ingredients = await getAllIngredients()
+  res.send(ingredients)
 })
 
 export default router

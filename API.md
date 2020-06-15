@@ -28,3 +28,14 @@ Category products
 ---
 ## Add product to category
 PUT `/category/:categoryId/product/:productId`
+
+
+## Edit product
+PUT `/product/:productId`
+### Body
+```
+  {
+    name?: number
+    product_ingredients?: 
+  }
+```

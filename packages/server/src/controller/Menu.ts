@@ -3,7 +3,8 @@ import { ProductCategory } from '../entity/ProductCategory'
 import { Product } from '../entity/Product'
 import { logError } from '../service/logger'
 import { ProductRepository } from '../repository/ProductRepository'
-import { addProductListRecipes } from '../service/ProductDbManager'
+import { addProductListRecipes } from '../helper/Menu'
+import { Ingredient } from '../entity/Ingredient'
 
 export async function getAllCategories(includeProducts = false, includeProductRecipe = true) {
   try {
@@ -57,6 +58,16 @@ export async function getAllProducts() {
   }
 }
 
+export async function getProduct(productId: number) {
+  try {
+    const productRepo = getManager().getCustomRepository(ProductRepository)
+    const product = await productRepo.getWithIngredients(productId)
+    return product
+  } catch (e) {
+    logError(e)
+  }
+}
+
 export async function createProduct(input: Product) {
   try {
     let product = new Product(input)
@@ -76,10 +87,10 @@ export async function addProductToCategory(productId: number, categoryId: number
   return true
 }
 
-export async function getProduct(productId: number) {
+export async function getAllIngredients() {
   try {
-    const product = await getManager().findOne(Product, productId)
-    return product
+    const ingredients = await getManager().find(Ingredient)
+    return ingredients
   } catch (e) {
     logError(e)
   }

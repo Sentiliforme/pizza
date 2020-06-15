@@ -5,6 +5,7 @@ import CategoryList from '../components/category/List.vue'
 import CategoryEdit from '../components/category/Edit.vue'
 import ProductList from '../components/product/List.vue'
 import ProductEdit from '../components/product/Edit.vue'
+import IngredientList from '../components/ingredient/List.vue'
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,11 @@ const routes = [
     path: '/product/:productId',
     name: 'ProductEdit',
     component: ProductEdit
+  },
+  {
+    path: '/ingredient',
+    name: 'IngredientList',
+    component: IngredientList
   }
 ]
 
