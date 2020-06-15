@@ -7,8 +7,8 @@
       loading-text="Cargando..."
     >
       <template v-slot:item.actions="{ item }">
-        <v-btn small color="primary" @click="editCategory(item)" class="mr-3">Editar</v-btn>
-        <v-btn small color="secondary" @click="editCategory(item)">Eliminar</v-btn>
+        <v-btn small color="primary" :to="'/category/' + item.id" class="mr-3">Editar</v-btn>
+        <v-btn small color="secondary" :to="'/category/' + item.id + '/delete'">Eliminar</v-btn>
       </template>
     </v-data-table>
   </v-app>

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Dashboard from '../components/Dashboard.vue'
 import CategoryList from '../components/category/List.vue'
 import CategoryEdit from '../components/category/Edit.vue'
+import CategoryDelete from '../components/category/Delete.vue'
 import ProductList from '../components/product/List.vue'
 import ProductEdit from '../components/product/Edit.vue'
 import ProductAdd from '../components/product/Add.vue'
@@ -37,6 +38,11 @@ const routes = [
     path: '/category/:categoryId',
     name: 'CategoryEdit',
     component: CategoryEdit
+  },
+  {
+    path: '/category/:categoryId/delete',
+    name: 'CategoryDelete',
+    component: CategoryDelete
   },
   {
     path: '/product',

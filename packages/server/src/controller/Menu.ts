@@ -6,8 +6,9 @@ import { ProductRepository } from '../repository/ProductRepository'
 import { addProductListRecipes } from '../helper/Menu'
 import { Ingredient } from '../entity/Ingredient'
 import { ProductIngredient } from '../entity/ProductIngredient'
+import { IngredientCategory } from '../entity/IngredientCategory'
 
-export async function getAllCategories(includeProducts = false, includeProductRecipe = true) {
+export async function getAllProductCategories(includeProducts = false, includeProductRecipe = true) {
   try {
     const findConfig: FindManyOptions<ProductCategory> = {}
     findConfig.relations = []
@@ -32,7 +33,7 @@ export async function getAllCategories(includeProducts = false, includeProductRe
   }
 }
 
-export async function createCategory(input: ProductCategory) {
+export async function createProductCategory(input: ProductCategory) {
   try {
     let category = new ProductCategory(input)
     category = await getManager().save(ProductCategory, category)
@@ -42,10 +43,21 @@ export async function createCategory(input: ProductCategory) {
   }
 }
 
-export async function getCategory(categoryId: number) {
+export async function getProductCategory(categoryId: number) {
   try {
     const category = await getManager().findOne(ProductCategory, categoryId)
     return category
+  } catch (e) {
+    logError(e)
+  }
+}
+
+export async function deleteProductCategory(id: number) {
+  try {
+    const category = await getManager().findOne(ProductCategory, id)
+    if (!category) throw new Error('404')
+    const response = await getManager().remove(category)
+    return !!response
   } catch (e) {
     logError(e)
   }

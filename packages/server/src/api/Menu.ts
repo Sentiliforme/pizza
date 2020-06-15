@@ -1,8 +1,8 @@
 import express from 'express'
 import {
-  getCategory,
-  getAllCategories,
-  createCategory,
+  getProductCategory,
+  getAllProductCategories,
+  createProductCategory,
   createProduct,
   addProductToCategory,
   getAllProducts,
@@ -13,20 +13,21 @@ import {
   editIngredient,
   deleteIngredient,
   editProduct,
-  deleteProduct
+  deleteProduct,
+  deleteProductCategory
 } from '../controller/Menu'
 
 const router = express.Router()
 
 router.get('/category', async (req, res) => {
   const includeProducts = req.query.includeProducts === 'true'
-  const categories = await getAllCategories(includeProducts)
+  const categories = await getAllProductCategories(includeProducts)
   res.send(categories)
 })
 
 router.post('/category', async (req, res) => {
   const category = req.body
-  const createdCategory = await createCategory(category)
+  const createdCategory = await createProductCategory(category)
   if (createdCategory) {
     res.send(createdCategory)
   } else {
@@ -36,7 +37,7 @@ router.post('/category', async (req, res) => {
 
 router.get('/category/:categoryId', async (req, res) => {
   const categoryId = parseInt(req.params.categoryId)
-  const category = await getCategory(categoryId)
+  const category = await getProductCategory(categoryId)
   if (category) {
     res.send(category)
   } else {
@@ -44,6 +45,11 @@ router.get('/category/:categoryId', async (req, res) => {
       error: 'No encontrado'
     })
   }
+})
+
+router.delete('/category/:categoryId', async (req, res) => {
+  const result = await deleteProductCategory(parseInt(req.params.categoryId))
+  res.send(result)
 })
 
 router.get('/product', async (req, res) => {
