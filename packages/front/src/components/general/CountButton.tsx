@@ -16,21 +16,21 @@ function CountButton({ amount, onAdd, onRemove }: Props) {
   const emphasisContent = isZero ? '+' : amount
   const zeroClass = isZero ? 'zero' : ''
   return (
-    <div className={'count-button ' + zeroClass} onClick={handleComponentClick}>
-      {isZero && <div className="add-label">Agregar</div>}
+    <button className={'count-button ' + zeroClass} onClick={handleComponentClick}>
+      {isZero && <span className="add-label">Agregar</span>}
 
       {!isZero && (
         <button className="remove-button" onClick={onRemove}>
           -
         </button>
       )}
-      <div className="emphasis">{emphasisContent}</div>
+      <span className="emphasis">{emphasisContent}</span>
       {!isZero && (
         <button className="add-button" onClick={onAdd}>
           +
         </button>
       )}
-    </div>
+    </button>
   )
 }
 

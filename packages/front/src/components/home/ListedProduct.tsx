@@ -4,6 +4,7 @@ import './ListedProduct.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProductToCart, removeProductFromCart, getProductAmount } from '../../store'
 import { formatPrice } from '../../helper/format'
+import { ReactComponent as PizzaIcon } from '../../assets/svg/pizza-icon.svg'
 
 type Props = {
   product: any
@@ -20,7 +21,10 @@ function ListedProduct({ product }: Props) {
   return (
     <div className="listed-product">
       <div className="info">
-        <div className="image"></div>
+        <div className="image">
+          {/* <PizzaIcon /> */}
+          <img src={require('../../assets/img/mechada.jpg')} />
+        </div>
         <div className="data">
           <h2 className="name">{product.name}</h2>
           <p className="description">Tomate, mozarella, albahaca fresca, sal, aceite</p>

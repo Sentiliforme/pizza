@@ -1,5 +1,16 @@
+@import "../assets/style/variables.scss";
+@import "../assets/style/mixin.scss";
+
+body {
+  background-color: $background-gray;
+  color: $white;
+}
+
 .App {
   padding-bottom: 60px;
+  @include lg {
+    padding: 0 30vw;
+  }
 }
 .logo-container {
   margin: 0 auto;

@@ -1,8 +1,11 @@
-/// SIZE SCREEN ///
-$mobile-screen: 600px;
-$tablet-portrait-screen: 768px;
-$tablet-landscape-screen: 993px;
-$desktop-screen: 1260px;
+// Small tablets and large smartphones (landscape view)
+$screen-sm: 576px;
+// Small tablets (portrait view)
+$screen-md: 768px;
+// Tablets and small desktops
+$screen-lg: 992px;
+// Large tablets and desktops
+$screen-xl: 1200px;
 
 $regular-font: 'roboto-regular';
 $bold-font: 'roboto-bold';
