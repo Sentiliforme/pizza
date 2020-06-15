@@ -34,6 +34,8 @@ export class Product {
   )
   productIngredients: ProductIngredient[]
 
+  recipe?: string
+
   constructor(obj: Partial<Product> = {}) {
     Object.assign(this, obj)
   }

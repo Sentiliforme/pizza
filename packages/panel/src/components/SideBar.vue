@@ -32,8 +32,8 @@ export default {
     return {
       drawer: true,
       items: [
+        { title: 'Resumen', icon: 'library_books', route: '/' },
         { title: 'Categoria', icon: 'library_books', route: '/category' },
-        { title: 'CategoriaTable', icon: 'library_books', route: '/categoryTable' },
         { title: 'Productos', icon: 'local_pizza', route: '/product' },
         { title: 'Ingredientes', icon: 'shopping_basket', route: '/ingredient' },
       ]

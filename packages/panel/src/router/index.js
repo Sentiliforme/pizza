@@ -1,47 +1,47 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import CategoryTable from '../components/Category.vue'
-import Ingredient from '../components/Ingredient.vue'
-import Product from '../components/Product.vue'
-import Category from '../views/Category.vue'
+import Dashboard from '../components/Dashboard.vue'
+import CategoryList from '../components/category/List.vue'
+import CategoryEdit from '../components/category/Edit.vue'
+import ProductList from '../components/product/List.vue'
+import ProductEdit from '../components/product/Edit.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Dashboard',
+    component: Dashboard
+  },
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  // },
+  {
+    path: '/category',
+    name: 'CategoryList',
+    component: CategoryList
   },
   {
-    path: '/CategoryTable',
-    name: 'categoryTable',
-    component: CategoryTable,
-  },
-  {
-    path: '/ingredient',
-    name: 'ingredient',
-    component: Ingredient,
+    path: '/category/:categoryId',
+    name: 'CategoryEdit',
+    component: CategoryEdit
   },
   {
     path: '/product',
-    name: 'product',
-    component: Product,
+    name: 'ProductList',
+    component: ProductList
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: '/category',
-    name: 'Category',
-    component: Category,
-  },
+    path: '/product/:productId',
+    name: 'ProductEdit',
+    component: ProductEdit
+  }
 ]
 
 const router = new VueRouter({

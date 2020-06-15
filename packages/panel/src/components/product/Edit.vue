@@ -1,17 +1,6 @@
 <template>
   <v-app>
-    <v-data-table
-      :headers="headers"
-      :items="products"
-      :loading="isLoading"
-      loading-text="Cargando..."
-    >
-      <template v-slot:item.promoPrice="{ item }">{{ item.promoAmount }} x {{ item.promoPrice }}</template>
-      <template v-slot:item.actions="{ item }">
-        <v-btn small color="primary" @click="editProduct(item)" class="mr-3">Editar</v-btn>
-        <v-btn small color="secondary" @click="editProduct(item)">Eliminar</v-btn>
-      </template>
-    </v-data-table>
+    Edit {{productId}}
   </v-app>
 </template>
 
@@ -36,13 +25,13 @@ export default {
         { text: 'Acciones', value: 'actions', sortable: false }
       ],
       products: [],
-      isLoading: true
+      isLoading: true,
+      productId: this.$route.params.productId
     }
   },
   methods: {
-    editProduct(product) {
-      const productId = product.id
-      this.$router.push({name: 'ProductEdit', params: {productId}})
+    editProduct (product) {
+      console.log('edit', product)
     }
   },
   props: {

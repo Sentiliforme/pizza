@@ -2,7 +2,12 @@
   <div v-if="isLoading">Cargando...</div>
   <div v-else>
     <v-app>
-      <v-data-table :headers="headers" :items="categories"></v-data-table>
+      <v-data-table :headers="headers" :items="categories">
+        <template v-slot:item.actions="{ item }">
+          <v-btn small color="primary" @click="editCategory(item)" class="mr-3">Editar</v-btn>
+          <v-btn small color="secondary" @click="editCategory(item)">Eliminar</v-btn>
+        </template>
+      </v-data-table>
     </v-app>
   </div>
 </template>
@@ -21,7 +26,8 @@ export default {
           sortable: false,
           value: 'id'
         },
-        { text: 'Nombre', value: 'name' }
+        { text: 'Nombre', value: 'name' },
+        { text: 'Acciones', value: 'actions', sortable: false }
       ],
       categories: [],
       isLoading: true
@@ -35,6 +41,12 @@ export default {
     this.categories = response.data
     this.isLoading = false
     console.log(response.data)
+  },
+  methods: {
+    editCategory(category) {
+      const categoryId = category.id
+      this.$router.push({name: 'CategoryEdit', params: {categoryId}})
+    }
   }
 }
 </script>

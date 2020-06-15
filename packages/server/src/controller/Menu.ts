@@ -2,14 +2,25 @@ import { getManager, FindManyOptions } from 'typeorm'
 import { ProductCategory } from '../entity/ProductCategory'
 import { Product } from '../entity/Product'
 import { logError } from '../service/logger'
+import { ProductRepository } from '../repository/ProductRepository'
+import { addProductListRecipes } from '../service/ProductDbManager'
 
-export async function getAllCategories(includeProducts = false) {
+export async function getAllCategories(includeProducts = false, includeProductRecipe = true) {
   try {
     const findConfig: FindManyOptions<ProductCategory> = {}
+    findConfig.relations = []
     if (includeProducts) {
-      findConfig.relations = ['products']
+      findConfig.relations.push('products')
+      if (includeProductRecipe) {
+        findConfig.relations.push('products.productIngredients', 'products.productIngredients.ingredient')
+      }
     }
     const categories = await getManager().find(ProductCategory, findConfig)
+    if (includeProducts && includeProductRecipe) {
+      for (const category of categories) {
+        addProductListRecipes(category.products)
+      }
+    }
     return categories
   } catch (e) {
     logError(e)
@@ -37,7 +48,9 @@ export async function getCategory(categoryId: number) {
 
 export async function getAllProducts() {
   try {
-    const products = await getManager().find(Product)
+    //const products = await getManager().find(Product)
+    const productRepo = getManager().getCustomRepository(ProductRepository)
+    const products = await productRepo.getAllWithRecipe()
     return products
   } catch (e) {
     logError(e)

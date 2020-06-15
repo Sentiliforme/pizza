@@ -27,7 +27,7 @@ function ListedProduct({ product }: Props) {
         </div>
         <div className="data">
           <h2 className="name">{product.name}</h2>
-          <p className="description">Tomate, mozarella, albahaca fresca, sal, aceite</p>
+          <p className="description">{product.recipe}</p>
         </div>
       </div>
       <div className="footer">
