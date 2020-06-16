@@ -63,6 +63,21 @@ export async function deleteProductCategory(id: number) {
   }
 }
 
+
+export async function editProductCategory(id: number, input: Partial<ProductCategory>) {
+  try {
+    const category = await getProductCategory(id)
+    if (!category) throw new Error('404')
+    for (const key in input) {
+      category[key] = input[key]
+    }
+    const response = await getManager().save(category)
+    return !!response
+  } catch (e) {
+    logError(e)
+  }
+}
+
 export async function getAllProducts() {
   try {
     //const products = await getManager().find(Product)
@@ -183,7 +198,7 @@ export async function getIngredient(id: number) {
 
 export async function editIngredient(id: number, input: Partial<Ingredient>) {
   try {
-    let ingredient = await getIngredient(id)
+    const ingredient = await getIngredient(id)
     if (!ingredient) throw new Error('404')
     for (const key in input) {
       ingredient[key] = input[key]

@@ -14,7 +14,8 @@ import {
   deleteIngredient,
   editProduct,
   deleteProduct,
-  deleteProductCategory
+  deleteProductCategory,
+  editProductCategory
 } from '../controller/Menu'
 
 const router = express.Router()
@@ -49,6 +50,11 @@ router.get('/category/:categoryId', async (req, res) => {
 
 router.delete('/category/:categoryId', async (req, res) => {
   const result = await deleteProductCategory(parseInt(req.params.categoryId))
+  res.send(result)
+})
+
+router.put('/category/:categoryId', async (req, res) => {
+  const result = await editProductCategory(parseInt(req.params.categoryId), req.body)
   res.send(result)
 })
 
