@@ -15,7 +15,7 @@ export async function getAllProductCategories(includeProducts = false, includePr
     if (includeProducts) {
       findConfig.relations.push('products')
       findConfig.where = {
-        products: { enabled: 1 }
+        products: { enabled: 1 },
       }
       if (includeProductRecipe) {
         findConfig.relations.push('products.productIngredients', 'products.productIngredients.ingredient')
@@ -62,8 +62,6 @@ export async function deleteProductCategory(id: number) {
     logError(e)
   }
 }
-
-
 export async function editProductCategory(id: number, input: Partial<ProductCategory>) {
   try {
     const category = await getProductCategory(id)
@@ -107,7 +105,7 @@ export async function createProduct(input: Partial<Product>, ingredients: Ingred
       product.productIngredients = ingredients.map(ingredient => {
         return {
           ingredient,
-          product
+          product,
         } as ProductIngredient
       })
       await getManager().save(product)
@@ -133,13 +131,7 @@ export async function editProduct(id: number, input: Partial<Product>, ingredien
         const pi = new ProductIngredient()
         pi.ingredient = ingredient
         pi.product = product
-        await getManager()
-          .createQueryBuilder()
-          .insert()
-          .into(ProductIngredient)
-          .values(pi)
-          .orIgnore(true)
-          .execute()
+        await getManager().createQueryBuilder().insert().into(ProductIngredient).values(pi).orIgnore(true).execute()
       }
     }
     return true

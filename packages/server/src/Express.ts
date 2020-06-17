@@ -59,3 +59,5 @@ export const setup = (app: Express, routes: Router) => {
   app.use(routes)
   setupErrorHandler(app)
 }
+
+require('./Passport')

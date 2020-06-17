@@ -15,7 +15,7 @@ import {
   editProduct,
   deleteProduct,
   deleteProductCategory,
-  editProductCategory
+  editProductCategory,
 } from '../controller/Menu'
 
 const router = express.Router()
@@ -43,7 +43,7 @@ router.get('/category/:categoryId', async (req, res) => {
     res.send(category)
   } else {
     res.status(404).send({
-      error: 'No encontrado'
+      error: 'No encontrado',
     })
   }
 })
@@ -70,7 +70,7 @@ router.get('/product/:productId', async (req, res) => {
     res.send(product)
   } else {
     res.status(404).send({
-      error: 'No encontrado'
+      error: 'No encontrado',
     })
   }
 })
