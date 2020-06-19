@@ -1,18 +1,18 @@
 import { Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 import { CustomProduct } from './CustomProduct'
-import { Ingredient } from './Ingredient'
+import { Cart } from './Cart'
 
 @Entity()
-export class CustomProductIngredient {
+export class CartCustomProduct {
   @PrimaryColumn()
-  customProductId: number
+  productId: number
 
   @PrimaryColumn()
-  ingredientId: number
+  cartId: number
 
   @ManyToOne(type => CustomProduct, { cascade: true })
   customProduct: CustomProduct
 
-  @ManyToOne(type => Ingredient, { cascade: true })
-  ingredient: Ingredient
+  @ManyToOne(type => Cart, { cascade: true })
+  cart: Cart
 }

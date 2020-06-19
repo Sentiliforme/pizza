@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinTable } from 'typeorm'
 import { ProductCategory } from './ProductCategory'
 import { Ingredient } from './Ingredient'
 import { ProductIngredient } from './ProductIngredient'
@@ -31,11 +31,11 @@ export class Product {
   @Column({ default: true })
   display: boolean
 
-  @OneToMany(
-    type => ProductIngredient,
-    productIngredient => productIngredient.product,
-    { cascade: true, onDelete: 'CASCADE' }
-  )
+  @OneToMany(type => ProductIngredient, productIngredient => productIngredient.product, {
+    cascade: true,
+    onDelete: 'CASCADE'
+  })
+  @JoinTable()
   productIngredients: ProductIngredient[]
 
   recipe?: string

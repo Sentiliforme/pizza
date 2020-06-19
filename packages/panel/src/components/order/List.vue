@@ -22,7 +22,8 @@ export default {
           firstName: 'Juanito',
           lastName: 'Perez',
           mail: 'juanito@perez.com',
-          phoneNumber: 12345678
+          phoneNumber: 12345678,
+          address: 'Avenida Siempre Viva 123'
         },
         cart: {
           products: [

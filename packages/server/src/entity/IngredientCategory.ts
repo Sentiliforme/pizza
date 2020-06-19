@@ -9,10 +9,7 @@ export class IngredientCategory {
   @Column()
   name: string
 
-  @OneToMany(
-    type => Ingredient,
-    ingredient => ingredient.category
-  )
+  @OneToMany(type => Ingredient, ingredient => ingredient.category)
   ingredients: Ingredient
 
   constructor(obj: Partial<IngredientCategory> = {}) {
