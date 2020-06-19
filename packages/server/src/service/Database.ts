@@ -1,7 +1,8 @@
 import 'reflect-metadata'
-import { createConnection, Connection } from 'typeorm'
+import { createConnection, Connection, getManager, ObjectType, EntitySchema } from 'typeorm'
 import * as ENV from '../ENV'
 import logger from './logger'
+import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
 
 let connection: Connection
 
@@ -16,7 +17,7 @@ export async function init(): Promise<Connection> {
       username: ENV.MYSQL_USER,
       password: ENV.MYSQL_ROOT_PASSWORD,
       entities: ENV.ENTITIES_PATH,
-      logging: ENV.LOG_SQL,
+      //logging: true
     })
   }
 
@@ -24,4 +25,17 @@ export async function init(): Promise<Connection> {
     await connection.synchronize()
   }
   return connection
+}
+
+export async function insertIgnore<T>(
+  entityTarget: ObjectType<T> | EntitySchema<T> | string,
+  values: QueryDeepPartialEntity<T> | QueryDeepPartialEntity<T>[]
+) {
+  return getManager()
+    .createQueryBuilder()
+    .insert()
+    .into(entityTarget)
+    .values(values)
+    .orIgnore(true)
+    .execute()
 }

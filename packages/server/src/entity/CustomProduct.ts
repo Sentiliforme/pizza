@@ -7,13 +7,7 @@ export class CustomProduct {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
-  productId: number
-
-  @OneToMany(
-    type => CustomProductIngredient,
-    cpi => cpi.customProduct
-  )
+  @OneToMany(type => CustomProductIngredient, cpi => cpi.customProduct)
   customProductIngredients: CustomProductIngredient[]
 
   @ManyToOne(type => Cart, { cascade: true })
