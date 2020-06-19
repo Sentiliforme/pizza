@@ -3,7 +3,7 @@
     <v-text-field v-model="product.name" label="Nombre" required />
     <v-text-field type="number" v-model="product.price" label="Precio" required />
     <v-switch v-model="product.display" class="ma-2" label="Mostrar" />
-     <v-autocomplete
+    <v-autocomplete
       v-model="product.category"
       :disabled="isLoading"
       :items="categories"
@@ -24,11 +24,10 @@
     <v-row>
       Promo?
       <v-switch v-model="hasPromo" class="ma-2" label="Incluir promo"></v-switch>
-    <v-text-field type="number" v-model="product.promoAmount" :disabled="!hasPromo" required />
-    X
-    <v-text-field type="number" v-model="product.promoPrice" :disabled="!hasPromo" required />
+      <v-text-field type="number" v-model="product.promoAmount" :disabled="!hasPromo" required />X
+      <v-text-field type="number" v-model="product.promoPrice" :disabled="!hasPromo" required />
     </v-row>
-    
+
     <v-autocomplete
       v-model="selectedIngredients"
       :disabled="isLoading"
@@ -49,7 +48,7 @@
           :input-value="data.selected"
           close
           @click="data.select"
-          @click:close="remove(data.item)"
+          @click:close="removeSelected(data.item)"
         >{{ data.item.name }}</v-chip>
       </template>
       <template v-slot:item="data">
@@ -97,6 +96,10 @@ export default {
   methods: {
     submit() {
       this.$emit('onSubmit', this.product, this.selectedIngredients)
+    },
+    removeSelected(ingredient) {
+      const index = this.selectedIngredients.findIndex(i => i.id === ingredient.id)
+      if (index >= 0) this.selectedIngredients.splice(index, 1)
     }
   },
   props: {
