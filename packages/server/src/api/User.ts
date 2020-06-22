@@ -6,10 +6,10 @@ const router = express.Router()
 
 router.post(
   '/login',
-  passport.athenticate('Login', {
+  passport.authenticate('Login', {
     successRedirect: '/profile',
     failureRedirect: '/login',
-    failureFlash: true,
+    failureFlash: true
   }),
   function (req) {
     console.log('Bienvenido')
@@ -26,7 +26,7 @@ router.post(
   passport.authenticate('Register', {
     successRedirect: '/profile',
     failureRedirect: '/signup',
-    failureFlash: true,
+    failureFlash: true
   })
 )
 
@@ -47,7 +47,7 @@ router.get('/user/:userId', async (req, res) => {
     res.send(user)
   } else {
     res.status(404).send({
-      error: 'Not Found',
+      error: 'Not Found'
     })
   }
 })

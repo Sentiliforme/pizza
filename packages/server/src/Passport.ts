@@ -1,10 +1,8 @@
 import bcrypt from 'bcrypt-nodejs'
 import { getAllUsers, getUser } from './controller/User'
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const User = require('./entity/User')
-const JwtStrategy = require('passport-jwt').Strategy
-//const ExtractJwt = require('passport-jwt').ExtractJwt
-const LocalStrategy = require('passport-local').Strategy
+import { User } from './entity/User'
+import { Strategy as JwtStrategy } from 'passport-jwt'
+import { Strategy as LocalStrategy } from 'passport-local'
 
 /*passport.use(
   new JwtStrategy({
@@ -13,22 +11,26 @@ const LocalStrategy = require('passport-local').Strategy
   })
 )
 */
-module.exports = function (passport) {
+export default function (passport) {
   passport.use(
     'Register',
     new LocalStrategy(
       {
         usernameField: 'email',
-        passwordFiel: 'password',
-        passReqToCallback: true,
+        passwordField: 'password',
+        passReqToCallback: true
       },
-      async function (req, username, password, err, done) {
+      async function (req, username, password, done) {
         const users = await getAllUsers()
         if (err) {
           return done(err)
         }
         if (users == username) {
-          return done(null, false, req.flash('registerMessage', 'El nombre de usuario ya esta en uso'))
+          return done(
+            null,
+            false,
+            req.flash('registerMessage', 'El nombre de usuario ya esta en uso')
+          )
         }
       }
     )
