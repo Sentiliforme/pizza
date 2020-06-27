@@ -1,38 +1,57 @@
 import { getManager } from 'typeorm'
 import { User } from '../entity/User'
-import { serialize } from 'typeserializer'
+import { logError } from '../service/logger'
 
 export async function getAllUsers() {
-  const connection = await this.connection
-  const users = await connection.getManager().find(User)
-  return serialize(users)
+  try {
+    const users = await getManager().find(User)
+    return users
+  } catch (e) {
+    logError(e)
+  }
 }
 
-export async function createUser(input: User) {
+export async function getById(id: number) {
+  try {
+    const user = await getManager().findOne(User, id)
+    return user
+  } catch (e) {
+    logError(e)
+  }
+}
+
+export async function newUser(input: Required<User>) {
   try {
     let user = new User(input)
-    user = await getManager().save(User, user)
+    user = await getManager().save(user)
     return user
   } catch (e) {
-    console.error(e)
-    return undefined
+    logError(e)
   }
 }
 
-export async function getUser(userId: number) {
+export async function updateUser(id: number, input: Required<User>) {
   try {
-    const user = await getManager().findOne(User, userId)
-    return user
+    const result = await getManager().update(User, { id }, input)
+    return result
   } catch (e) {
-    console.error(e)
+    logError(e)
   }
 }
 
-export async function deleteUser(userId: number) {
+export async function deleteUser(id: number) {
   try {
-    const user = await getManager().delete(User, userId)
+    const result = await getManager().softDelete(User, { id })
+    return result
+  } catch (e) {
+    logError(e)
+  }
+}
+export async function getByUsername() {
+  try {
+    const user = await getManager().find(User, { where: ['username'] })
     return user
   } catch (e) {
-    console.error(e)
+    logError(e)
   }
 }

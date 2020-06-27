@@ -10,10 +10,15 @@ const logger = createLogger({
     format.align(),
     format.printf(({ timestamp, level, message, ...args }) => {
       const ts = moment(timestamp).format('HH:mm:ss')
-      return `[${level}: ${ts}] ${message.trim()} ${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`
+      return `[${level}: ${ts}] ${message.trim()} ${
+        Object.keys(args).length ? JSON.stringify(args, null, 2) : ''
+      }`
     })
   ),
-  transports: [new transports.File({ filename: 'error.log', level: 'error' }), new transports.Console()],
+  transports: [
+    new transports.File({ filename: 'error.log', level: 'error' }),
+    new transports.Console()
+  ]
 })
 
 export function logError(error: any, tag?: string) {

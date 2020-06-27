@@ -4,7 +4,7 @@ import {
   createProductCategory,
   getProductCategory,
   deleteProductCategory,
-  editProductCategory,
+  editProductCategory
 } from '../controller/Menu'
 import { getAllProductCategories } from '../controller/Menu'
 
@@ -35,7 +35,7 @@ router.get('/category/:categoryId', async (req, res) => {
     res.send(category)
   } else {
     res.status(404).send({
-      error: 'No encontrado',
+      error: 'No encontrado'
     })
   }
 })

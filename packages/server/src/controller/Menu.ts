@@ -15,7 +15,7 @@ export async function getAllProductCategories(
     if (includeProducts) {
       findConfig.relations.push('products')
       findConfig.where = {
-        products: { enabled: 1 },
+        products: { enabled: 1 }
       }
       if (includeProductRecipe) {
         findConfig.relations.push(

@@ -1,55 +1,37 @@
 import express from 'express'
-import { getUser, getAllUsers, createUser } from '../controller/user'
-import passport from 'passport'
+import { getAllUsers, getById, updateUser, deleteUser, newUser } from '../controller/User'
+//import { login } from '../controller/Auth'
 
 const router = express.Router()
 
-router.post(
-  '/login',
-  passport.authenticate('Login', {
-    successRedirect: '/profile',
-    failureRedirect: '/login',
-    failureFlash: true
-  }),
-  function (req) {
-    console.log('Bienvenido')
-    if (req.body.remember) {
-      req.cookies.maxAge = 1000 * 60 * 3
-    } else {
-      req.cookies.expires = false
-    }
-  }
-)
-
-router.post(
-  '/register',
-  passport.authenticate('Register', {
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
-    failureFlash: true
-  })
-)
-
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-router.get('/profile', isLoggedIn, function (req, res) {})
-
-router.get('/logout', function (req, res) {
-  res.redirect('/')
+/*router.post('/login', async (req, res) => {
+  const users = await login(req.body.username, req.body.password)
+  res.send(users)
+})
+*/
+router.get('/user', async (req, res) => {
+  const users = await getAllUsers()
+  res.send(users)
 })
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) return next()
-}
+router.post('/register', async (req, res) => {
+  const users = await newUser(req.body)
+  res.send(users)
+})
+
 router.get('/user/:userId', async (req, res) => {
-  const userId = parseInt(req.params.userId)
-  const user = await getUser(userId)
-  if (user) {
-    res.send(user)
-  } else {
-    res.status(404).send({
-      error: 'Not Found'
-    })
-  }
+  const user = await getById(parseInt(req.params.userId))
+  res.send(user)
+})
+
+router.put('/user/:userId', async (req, res) => {
+  const result = await updateUser(parseInt(req.params.userId), req.body)
+  res.send(result)
+})
+
+router.delete('/user/:userId', async (req, res) => {
+  const result = await deleteUser(parseInt(req.params.userId))
+  res.send(result)
 })
 
 export default router
