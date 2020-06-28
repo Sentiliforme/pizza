@@ -10,19 +10,19 @@ export class User {
   })
   username: string
   @Column({
-    type: 'varchar',
-    nullable: false
+    type: 'string',
+    nullable: false,
   })
   password: string
+  setPassword(pw: string) {
+    this.password = pw
+  }
   @Column({
     type: 'varchar',
     nullable: false
   })
-  hashPassword() {
-    this.password = bcrypt.hashSync(this.password, 10)
-  }
-  checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
-    return bcrypt.compareSync(unencryptedPassword, this.password)
+  async validatePassword(plainTextPassword: string) {
+		return await bcrypt.compare(plainTextPassword, this.password + '')
   }
   @Column({
     type: 'varchar'

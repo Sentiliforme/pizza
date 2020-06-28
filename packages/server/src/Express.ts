@@ -3,7 +3,7 @@ import { Express, Router } from 'express'
 import bodyParser from 'body-parser'
 import * as ENV from './ENV'
 import logger from './service/Logger'
-import { createConnection } from 'typeorm'
+
 // Pre routes
 const cors = (req, res, next) => {
   // For user account authentication
@@ -64,7 +64,14 @@ export const setup = (app: Express, routes: Router) => {
 }
 export const setupPassport = (app: Express, routes: Router) => {
   setupInitialMiddlewares(app)
-  createConnection()
+  var passport = require('passport')
+  var expressSession = require('express-session')
+  app.use(expressSession({ secret: 'NEKO' }))
+  app.use(passport.initialize())
+  app.use(passport.session())
+  //app.use(flash())
+  var initPassport = require('./passport/Auth')
+  initPassport(passport)
   app.use(routes)
   setupErrorHandler(app)
 }

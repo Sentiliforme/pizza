@@ -20,7 +20,7 @@ export async function getById(id: number) {
   }
 }
 
-export async function newUser(input: Required<User>) {
+export async function createUser(input: Required<User>) {
   try {
     let user = new User(input)
     user = await getManager().save(user)
@@ -49,7 +49,7 @@ export async function deleteUser(id: number) {
 }
 export async function getByUsername() {
   try {
-    const user = await getManager().find(User, { where: ['username'] })
+    const user = await getManager().findOne(User, { where: ['username'] })
     return user
   } catch (e) {
     logError(e)
